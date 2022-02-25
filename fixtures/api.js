@@ -172,6 +172,44 @@ module.exports = {
       }
     }
   },
+  "rates": {
+    "BTC": {
+      "USD": 0.000025,
+      "XRP": 0.000018,
+      "__meta": {
+        "currency": {
+          "en": "BTC",
+          "code": "BTC",
+          "symbol": "BTC",
+          "isoDecimals": 4
+        }
+      }
+    },
+    "USD": {
+      "USD": 1,
+      "XRP": 0.7125,
+      "__meta": {
+        "currency": {
+          "en": "US Dollar",
+          "code": "USD",
+          "symbol": "$",
+          "isoDecimals": 2
+        }
+      }
+    },
+    "EUR": {
+      "USD": 0.888299,
+      "XRP": 0.632913,
+      "__meta": {
+        "currency": {
+          "en": "Euro",
+          "code": "EUR",
+          "symbol": "€",
+          "isoDecimals": 2
+        }
+      }
+    }
+  },
   "curatedAssets": {
     "issuers": [
       "Bitstamp",

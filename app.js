@@ -1,27 +1,33 @@
 require('dotenv').config()
-
+const ws = require('ws')
 const apiFixtures = require('./fixtures/api')
+const port = process.env.XUMM_PORT ? process.env.XUMM_PORT : 3000
+
 const express = require('express')
 const app = express()
-const port = typeof process.env.PORT !== "undefined" ? process.env.PORT : 3000
+app.use(express.json());
 
 const auth = (req, res, next) => {
-  const key = req.headers['X-API-Key'];
-  const secret = req.headers['X-API-Secret'];
+  const key = process.env.XUMM_TEST_API_KEY ? process.env.XUMM_TEST_API_KEY : apiFixtures.api.key;
+  const secret = process.env.XUMM_TEST_API_SECRET ? process.env.XUMM_TEST_API_SECRET : apiFixtures.api.secret;
 
-  if (apiFixtures.api.key !== key || apiFixtures.api.secret !== secret) {
-    return res.status(403).send({
-      "error": {
-        "reference": "a26ffe51-e4b8-4a28-8c7b-f4edfd73e12f",
-        "code": 811
-      }
-    });
+  if (req.headers['X-API-Key'] !== key || req.headers['X-API-Secret'] !== secret) {
+    return res.status(403).send(apiFixtures.invalidCredentials)
   }
 
   next();
 }
 
 app.post('/payload', (req, res) => {
+  const {txjson, txblob} = req.body;
+  if (!txjson && !txblob) {
+    return res.sendStatus(400)
+  }
+
+  if (txjson && !txjson.TransactionType) {
+    return res.sendStatus(400)
+  }
+
   res.send(apiFixtures.payload.created)
 })
 
@@ -29,16 +35,22 @@ app.post('/payload', (req, res) => {
   res.send({})
 })
 
-app.post('/payload', (req, res) => {
-  res.send({})
-})
-
 app.get('/ping', auth, (req, res) => {
-  res.send({})
+  res.send(apiFixtures.ping)
 })
 
 app.get('/curated-assets', (req, res) => {
-  res.send({})
+  res.send(apiFixtures.curatedAssets)
+})
+
+app.get('/rates/:currency', (req, res) => {
+  const {currency} = req.params
+  const result = apiFixtures.rates[currency]
+  if (!result) {
+    return res.sendStatus(400)
+  }
+
+  res.send(result)
 })
 
 app.get('/kyc-status/:account', (req, res) => {
