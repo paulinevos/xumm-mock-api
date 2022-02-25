@@ -152,7 +152,7 @@ module.exports = {
         "account": "rPEPPER7kfTD9w2To4CQk6UCfuHM9c6GDY"
       },
       "custom_meta": {
-        "identifier": null,
+        "identifier": "some-id",
         "blob": {
           "country": "Netherlands"
         },

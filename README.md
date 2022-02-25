@@ -7,8 +7,9 @@ response data structures from endpoints as described in the API docs.
 
 ----------------------- ------------------------------------
 
-**Please note**: the API is extremely simple and will return whatever is in the fixtures. You will not
-be returned different data based on what you post, for instance, and there's no elaborate validation.
+**Please note:** the mock API is not intended to test the Xumm API itself, but your application. It's therefore 
+extremely simple and will return whatever is in the fixtures. You will not be returned different payloads 
+based on what you post, for instance, and there's no elaborate validation.
 
 ----------------------------------------------------------------
 
