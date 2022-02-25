@@ -65,7 +65,7 @@ module.exports = {
         "qr_png": "http://localhost:3001/sign/00000000-0000-4839-af2f-f794874a80b0_q.png",
         "qr_matrix": "http://localhost:3001/sign/00000000-0000-4839-af2f-f794874a80b0_q.json",
         "qr_uri_quality_opts": ["m", "q", "h"],
-        "websocket_status": "ws://localhost:3001/sign/00000000-0000-4839-af2f-f794874a80b0"
+        "websocket_status": "ws://local"
       },
       "pushed": false
     },
