@@ -1,7 +1,9 @@
+require('dotenv').config()
+
 const apiFixtures = require('./fixtures/api')
 const express = require('express')
 const app = express()
-const port = 3000;
+const port = typeof process.env.PORT !== "undefined" ? process.env.PORT : 3000
 
 const auth = (req, res, next) => {
   const key = req.headers['X-API-Key'];
@@ -20,7 +22,7 @@ const auth = (req, res, next) => {
 }
 
 app.post('/payload', (req, res) => {
-  res.send({})
+  res.send(apiFixtures.payload.created)
 })
 
 app.post('/payload', (req, res) => {
