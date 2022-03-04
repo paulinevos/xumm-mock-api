@@ -270,6 +270,7 @@ module.exports = {
     }
   },
   "kycStatus": {
+    "accountId": "some-account-id",
     "kycStatus": "IN_PROGRESS",
     "possibleStatuses": {
       "NONE": "No KYC attempt has been made",

@@ -69,17 +69,24 @@ app.get('/rates/:currency', auth, (req, res) => {
 })
 
 app.post('/kyc-status', auth, (req, res) => {
-  res.send({
-    "account": req.params.account,
-    "kycApproved": true
-  })
+  const {user_token} = req.body
+
+  if (!user_token) {
+    return res.sendStatus(400)
+  }
+
+  res.send(apiFixtures.kycStatus)
 })
 
 app.get('/kyc-status/:account', auth, (req, res) => {
-  res.send({
-    "account": req.params.account,
-    "kycApproved": true
-  })
+  const {account} = reg.params
+  const status = apiFixtures.kycStatus
+
+  if (status.accountId !== account) {
+    return res.sendStatus(404)
+  }
+
+  res.send(status)
 })
 
 app.get('/xrpl-tx/:txid', auth, (req, res) => {
