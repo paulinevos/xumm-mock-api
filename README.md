@@ -1,6 +1,9 @@
 Xumm mock API
 ====
 
+**This repo was moved to XRPL-Labs/XUMM-API-Mock-Server**
+The one here will not be maintained.
+
 A mock version of the API as described in the [Xumm API docs](https://xumm.readme.io/reference/about).
 This mock API has very basic fixtures for endpoints and is intended to run test suites that expect
 response data structures from endpoints as described in the API docs. 
